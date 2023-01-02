@@ -12,6 +12,7 @@ return [
         'paths' => [
             BASE_PATH . '/app',
             BASE_PATH . '/common',
+            BASE_PATH . '/core',
             BASE_PATH . '/demo',
         ],
         // 忽略的注解名
