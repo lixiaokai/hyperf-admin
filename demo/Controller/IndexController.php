@@ -6,7 +6,7 @@ namespace Demo\Controller;
 
 use App\Controller\AbstractController;
 use Hyperf\HttpServer\Annotation\Controller;
-use Hyperf\HttpServer\Annotation\GetMapping;
+use Hyperf\HttpServer\Annotation\RequestMapping;
 
 /**
  * 演示首页 - 控制器.
@@ -18,7 +18,7 @@ class IndexController extends AbstractController
     /**
      * 演示 - 列表.
      *
-     * @GetMapping(path="")
+     * @RequestMapping(path="", methods="get")
      */
     public function list(): array
     {
@@ -34,7 +34,7 @@ class IndexController extends AbstractController
     /**
      * 演示 - 详情.
      *
-     * @GetMapping(path="{id:\d+}")
+     * @RequestMapping(path="{id:\d+}", methods="get")
      */
     public function detail(int $id): array
     {
