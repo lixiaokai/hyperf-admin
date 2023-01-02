@@ -6,23 +6,14 @@ namespace Core\Controller;
 
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Contract\RequestInterface;
-use Hyperf\HttpServer\Contract\ResponseInterface;
-use Psr\Container\ContainerInterface;
 
+/**
+ * 控制器 - 抽象类.
+ */
 abstract class AbstractController
 {
     /**
      * @Inject
      */
-    protected ContainerInterface $container;
-
-    /**
-     * @Inject
-     */
     protected RequestInterface $request;
-
-    /**
-     * @Inject
-     */
-    protected ResponseInterface $response;
 }
