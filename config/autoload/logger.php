@@ -1,29 +1,39 @@
 <?php
 
 declare(strict_types=1);
+
 /**
- * This file is part of Hyperf.
+ * 日志 - 配置文件.
  *
- * @link     https://www.hyperf.io
- * @document https://hyperf.wiki
- * @contact  group@hyperf.io
- * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ * @see https://hyperf.wiki/2.2/#/zh-cn/logger
  */
+
+$appEnv = env('APP_ENV', 'dev');
+
 return [
     'default' => [
-        'handler' => [
-            'class' => Monolog\Handler\StreamHandler::class,
-            'constructor' => [
-                'stream' => BASE_PATH . '/runtime/logs/hyperf.log',
-                'level' => Monolog\Logger::DEBUG,
+        'handlers' => [
+            // info、waring、notice 日志
+            [
+                'class' => Monolog\Handler\StreamHandler::class,
+                'constructor' => [
+                    'stream' => $appEnv === 'dev' ? 'php://stdout' : BASE_PATH . '/runtime/logs/hyperf.log',
+                    'level' => Monolog\Logger::INFO,
+                ],
+                'formatter' => [
+                    'class' => Monolog\Formatter\JsonFormatter::class,
+                ],
             ],
-        ],
-        'formatter' => [
-            'class' => Monolog\Formatter\LineFormatter::class,
-            'constructor' => [
-                'format' => null,
-                'dateFormat' => 'Y-m-d H:i:s',
-                'allowInlineLineBreaks' => true,
+            // error 日志
+            [
+                'class' => Monolog\Handler\StreamHandler::class,
+                'constructor' => [
+                    'stream' => $appEnv === 'dev' ? 'php://stdout' : BASE_PATH . '/runtime/logs/hyperf-error.log',
+                    'level' => Monolog\Logger::ERROR,
+                ],
+                'formatter' => [
+                    'class' => Monolog\Formatter\JsonFormatter::class,
+                ],
             ],
         ],
     ],
