@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+use Core\Monolog\Handler\StreamHandler;
+use Monolog\Formatter\JsonFormatter;
+use Monolog\Logger;
+
 /**
  * 日志 - 配置文件.
  *
@@ -13,26 +17,37 @@ $appEnv = env('APP_ENV', 'dev');
 return [
     'default' => [
         'handlers' => [
-            // info、waring、notice 日志
+            // debug 日志
             [
-                'class' => Monolog\Handler\StreamHandler::class,
+                'class' => StreamHandler::class,
                 'constructor' => [
-                    'stream' => $appEnv === 'dev' ? 'php://stdout' : BASE_PATH . '/runtime/logs/hyperf.log',
-                    'level' => Monolog\Logger::INFO,
+                    'stream' => $appEnv === 'dev' ? 'php://stdout' : BASE_PATH . '/runtime/logs/hyperf-debug.log',
+                    'level' => Logger::DEBUG,
                 ],
                 'formatter' => [
-                    'class' => Monolog\Formatter\JsonFormatter::class,
+                    'class' => JsonFormatter::class,
+                ],
+            ],
+            // info、waring、notice 日志
+            [
+                'class' => StreamHandler::class,
+                'constructor' => [
+                    'stream' => $appEnv === 'dev' ? 'php://stdout' : BASE_PATH . '/runtime/logs/hyperf.log',
+                    'level' => Logger::INFO,
+                ],
+                'formatter' => [
+                    'class' => JsonFormatter::class,
                 ],
             ],
             // error 日志
             [
-                'class' => Monolog\Handler\StreamHandler::class,
+                'class' => StreamHandler::class,
                 'constructor' => [
                     'stream' => $appEnv === 'dev' ? 'php://stdout' : BASE_PATH . '/runtime/logs/hyperf-error.log',
-                    'level' => Monolog\Logger::ERROR,
+                    'level' => Logger::ERROR,
                 ],
                 'formatter' => [
-                    'class' => Monolog\Formatter\JsonFormatter::class,
+                    'class' => JsonFormatter::class,
                 ],
             ],
         ],
