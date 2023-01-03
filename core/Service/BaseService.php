@@ -10,9 +10,9 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * 服务 - 抽象类.
+ * 服务 - 抽象基类.
  */
-abstract class AbstractService
+abstract class BaseService
 {
     protected LoggerInterface $logger;
 
