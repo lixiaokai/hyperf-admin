@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Demo\Controller;
 
-use Core\Controller\AbstractController;
+use Core\Controller\BaseController;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\RequestMapping;
 
@@ -13,7 +13,7 @@ use Hyperf\HttpServer\Annotation\RequestMapping;
  *
  * @Controller(prefix="demo")
  */
-class IndexController extends AbstractController
+class IndexController extends BaseController
 {
     /**
      * 演示 - 列表.

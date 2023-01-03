@@ -8,9 +8,9 @@ use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Contract\RequestInterface;
 
 /**
- * 控制器 - 抽象类.
+ * 控制器 - 抽象基类.
  */
-abstract class AbstractController
+abstract class BaseController
 {
     /**
      * @Inject
