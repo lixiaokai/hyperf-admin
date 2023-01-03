@@ -1,13 +1,10 @@
 <?php
 
 declare(strict_types=1);
+
 /**
- * This file is part of Hyperf.
- *
- * @link     https://www.hyperf.io
- * @document https://hyperf.wiki
- * @contact  group@hyperf.io
- * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ * DI 的依赖关系和类对应关系 - 配置.
  */
 return [
+    Hyperf\Database\Commands\Ast\ModelUpdateVisitor::class => Core\Model\Visitor\ModelUpdateVisitor::class,
 ];
