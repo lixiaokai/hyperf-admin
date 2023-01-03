@@ -11,7 +11,7 @@ use Hyperf\ModelCache\Cacheable;
 use Hyperf\ModelCache\CacheableInterface;
 
 /**
- * 模型 - 抽象类.
+ * 模型 - 抽象基类.
  */
 abstract class BaseModel extends Model implements CacheableInterface
 {
