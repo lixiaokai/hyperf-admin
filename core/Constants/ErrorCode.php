@@ -1,20 +1,15 @@
 <?php
 
 declare(strict_types=1);
-/**
- * This file is part of Hyperf.
- *
- * @link     https://www.hyperf.io
- * @document https://hyperf.wiki
- * @contact  group@hyperf.io
- * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
- */
-namespace App\Constants;
+
+namespace Core\Constants;
 
 use Hyperf\Constants\AbstractConstants;
 use Hyperf\Constants\Annotation\Constants;
 
 /**
+ * 错误代码 - 枚举类.
+ *
  * @Constants
  */
 class ErrorCode extends AbstractConstants
