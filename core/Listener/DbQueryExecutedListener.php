@@ -1,15 +1,8 @@
 <?php
 
 declare(strict_types=1);
-/**
- * This file is part of Hyperf.
- *
- * @link     https://www.hyperf.io
- * @document https://hyperf.wiki
- * @contact  group@hyperf.io
- * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
- */
-namespace App\Listener;
+
+namespace Core\Listener;
 
 use Hyperf\Database\Events\QueryExecuted;
 use Hyperf\Event\Annotation\Listener;
@@ -17,7 +10,6 @@ use Hyperf\Event\Contract\ListenerInterface;
 use Hyperf\Logger\LoggerFactory;
 use Hyperf\Utils\Arr;
 use Hyperf\Utils\Str;
-use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -25,14 +17,11 @@ use Psr\Log\LoggerInterface;
  */
 class DbQueryExecutedListener implements ListenerInterface
 {
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
+    private LoggerInterface $logger;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(LoggerFactory $loggerFactory)
     {
-        $this->logger = $container->get(LoggerFactory::class)->get('sql');
+        $this->logger = $loggerFactory->get('sql');
     }
 
     public function listen(): array
@@ -42,9 +31,6 @@ class DbQueryExecutedListener implements ListenerInterface
         ];
     }
 
-    /**
-     * @param QueryExecuted $event
-     */
     public function process(object $event)
     {
         if ($event instanceof QueryExecuted) {

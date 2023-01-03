@@ -1,15 +1,8 @@
 <?php
 
 declare(strict_types=1);
-/**
- * This file is part of Hyperf.
- *
- * @link     https://www.hyperf.io
- * @document https://hyperf.wiki
- * @contact  group@hyperf.io
- * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
- */
-namespace App\Listener;
+
+namespace Core\Listener;
 
 use Hyperf\AsyncQueue\AnnotationJob;
 use Hyperf\AsyncQueue\Event\AfterHandle;
@@ -21,21 +14,16 @@ use Hyperf\Event\Annotation\Listener;
 use Hyperf\Event\Contract\ListenerInterface;
 use Hyperf\ExceptionHandler\Formatter\FormatterInterface;
 use Hyperf\Logger\LoggerFactory;
+use Psr\Log\LoggerInterface;
 
 /**
  * @Listener
  */
 class QueueHandleListener implements ListenerInterface
 {
-    /**
-     * @var \Psr\Log\LoggerInterface
-     */
-    protected $logger;
+    protected LoggerInterface $logger;
 
-    /**
-     * @var FormatterInterface
-     */
-    protected $formatter;
+    protected FormatterInterface $formatter;
 
     public function __construct(LoggerFactory $loggerFactory, FormatterInterface $formatter)
     {
