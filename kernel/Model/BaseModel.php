@@ -21,7 +21,7 @@ abstract class BaseModel extends Model implements CacheableInterface
     /**
      * 获取 - [ 带库名 ] 带表名的字段.
      *
-     * @see Model::qualifyColumn()    如果没有第 2 个参数，等同于该方法
+     * @see Model::qualifyColumn()     如果没有第 2 个参数，等同于该方法
      * @param  string|string[] $col    字段名
      * @param  bool            $withDb 是否带库名
      * @return string          返回字符串 ( 例如：user.id 或 dbName.user.id )
