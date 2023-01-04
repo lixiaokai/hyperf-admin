@@ -38,7 +38,7 @@ class Response
     /**
      * @param mixed $data
      */
-    public static function withData($data, string $message = ''): ResponseInterface
+    public static function withData($data = [], string $message = ''): ResponseInterface
     {
         return (new self($data))->toJson();
     }
@@ -46,9 +46,9 @@ class Response
     /**
      * @param mixed $data
      */
-    public static function success($data): ResponseInterface
+    public static function success($data = [], string $message = '操作成功'): ResponseInterface
     {
-        return (new self($data, '操作成功'))->toJson();
+        return (new self($data, $message))->toJson();
     }
 
     protected function toJson(): ResponseInterface
