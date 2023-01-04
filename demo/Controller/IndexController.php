@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Demo\Controller;
 
-use Kernel\Controller\BaseController;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\RequestMapping;
+use Kernel\Controller\BaseController;
+use Kernel\Response\Response;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * 演示首页 - 控制器.
@@ -20,15 +22,15 @@ class IndexController extends BaseController
      *
      * @RequestMapping(path="", methods="get")
      */
-    public function list(): array
+    public function list(): ResponseInterface
     {
         $user = $this->request->input('user', 'Hyperf');
         $method = $this->request->getMethod();
 
-        return [
+        return Response::withData([
             'method' => $method,
             'message' => "Hello {$user}.",
-        ];
+        ]);
     }
 
     /**
@@ -36,14 +38,14 @@ class IndexController extends BaseController
      *
      * @RequestMapping(path="{id:\d+}", methods="get")
      */
-    public function detail(int $id): array
+    public function detail(int $id): ResponseInterface
     {
-        return [
+        return Response::withData([
             'method' => $this->request->getMethod(),
             'data' => [
                 'id' => $id,
                 'uri' => $this->request->getRequestUri(),
             ],
-        ];
+        ]);
     }
 }
