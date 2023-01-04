@@ -11,9 +11,6 @@ trait Searchable
 {
     /**
      * Todo: 待完善.
-     *
-     * 当前页数：current_page ( 兼容 pageNo )
-     * 每页条数：page_size ( 兼容 pageSize )
      */
     public function search(array $searchParams, Builder $query = null, array $condition = null): PaginatorInterface
     {
