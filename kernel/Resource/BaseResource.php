@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Kernel\Resource;
 
-use Carbon\Carbon;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Contract\RequestInterface;
 use Hyperf\Resource\Json\JsonResource;
