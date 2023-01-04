@@ -7,9 +7,12 @@ namespace Demo\Controller;
 use Demo\Collection\DemoCollection;
 use Demo\Request\DemoRequest;
 use Demo\Resource\DemoResource;
+use Demo\Service\DemoService;
+use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\RequestMapping;
 use Kernel\Controller\BaseController;
+use Kernel\Request\SearchRequest;
 use Kernel\Response\Response;
 use Psr\Http\Message\ResponseInterface;
 
@@ -21,16 +24,19 @@ use Psr\Http\Message\ResponseInterface;
 class DemoController extends BaseController
 {
     /**
+     * @Inject
+     */
+    protected DemoService $service;
+
+    /**
      * 演示 - 列表.
      *
      * @RequestMapping(path="", methods="get")
      */
-    public function list(): ResponseInterface
+    public function list(SearchRequest $request): ResponseInterface
     {
-        return DemoCollection::make([
-            ['id' => 1, 'name' => '名称 1', 'remark' => '备注 1'],
-            ['id' => 2, 'name' => '名称 2', 'remark' => '备注 2'],
-        ]);
+        $res = $this->service->search($request->searchParams());
+        return DemoCollection::make($res);
     }
 
     /**
