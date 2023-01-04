@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 return [
     // 任务调度器进程
-    // Hyperf\Crontab\Process\CrontabDispatcherProcess::class,
+    Hyperf\Crontab\Process\CrontabDispatcherProcess::class,
     // 异步消费进程
     Hyperf\AsyncQueue\Process\ConsumerProcess::class,
 ];
