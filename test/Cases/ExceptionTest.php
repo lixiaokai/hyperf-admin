@@ -2,9 +2,9 @@
 
 namespace HyperfTest\Cases;
 
-use Core\Exception\BizException;
-use Core\Exception\DataSaveException;
-use Core\Exception\NotFoundException;
+use Kernel\Exception\BizException;
+use Kernel\Exception\DataSaveException;
+use Kernel\Exception\NotFoundException;
 use PHPUnit\Framework\TestCase;
 
 /**

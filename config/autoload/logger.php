@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Core\Monolog\Handler\StreamHandler;
+use Kernel\Monolog\Handler\StreamHandler;
 use Monolog\Formatter\JsonFormatter;
 use Monolog\Logger;
 

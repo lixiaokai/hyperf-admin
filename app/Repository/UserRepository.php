@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Model\User;
-use Core\Repository\BaseRepository;
+use Kernel\Repository\BaseRepository;
 use Hyperf\Database\Model\Collection;
 
 /**

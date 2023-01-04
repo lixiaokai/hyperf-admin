@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Demo\Controller;
 
-use Core\Controller\BaseController;
+use Kernel\Controller\BaseController;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\RequestMapping;
 

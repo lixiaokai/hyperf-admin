@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace HyperfTest\Cases;
 
-use Core\Model\BaseModel;
+use Kernel\Model\BaseModel;
 use PHPUnit\Framework\TestCase;
 
 /**

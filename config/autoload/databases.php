@@ -44,7 +44,7 @@ return [
                 'path' => 'app/Model',                               // 模型存储路径
                 'force_casts' => true,                               // 是否强制重置 casts 参数
                 'inheritance' => 'BaseModel',                        // 父类
-                'uses' => 'Core\Model\BaseModel',                    // 配合 inheritance 使用
+                'uses' => 'Kernel\Model\BaseModel',                    // 配合 inheritance 使用
                 'table_mapping' => [],
                 'refresh_fillable' => true,                          // 是否刷新 fillable 参数
                 'with_comments' => true,                             // 是否增加字段注释

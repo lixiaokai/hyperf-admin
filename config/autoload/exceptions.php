@@ -13,11 +13,11 @@ return [
         'http' => [
             Hyperf\HttpServer\Exception\Handler\HttpExceptionHandler::class,
             // 验证 - 异常处理器
-            Core\Exception\Handler\ValidationExceptionHandler::class,
+            Kernel\Exception\Handler\ValidationExceptionHandler::class,
             // 公共 - 异常处理器 ( 即自定义异常处理器 )
-            Core\Exception\Handler\CommonExceptionHandler::class,
+            Kernel\Exception\Handler\CommonExceptionHandler::class,
             // 托底 - 异常处理器
-            Core\Exception\Handler\AppExceptionHandler::class,
+            Kernel\Exception\Handler\AppExceptionHandler::class,
         ],
     ],
 ];
