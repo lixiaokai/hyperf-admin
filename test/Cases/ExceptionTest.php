@@ -2,7 +2,7 @@
 
 namespace HyperfTest\Cases;
 
-use Kernel\Exception\BizException;
+use Kernel\Exception\BusinessException;
 use Kernel\Exception\DataSaveException;
 use Kernel\Exception\NotFoundException;
 use PHPUnit\Framework\TestCase;
@@ -18,8 +18,8 @@ class ExceptionTest extends TestCase
     public function testBizException()
     {
         try {
-            throw new BizException();
-        } catch (BizException $e) {
+            throw new BusinessException();
+        } catch (BusinessException $e) {
             self::assertEquals(400, $e->getCode());
             self::assertEquals('业务异常', $e->getMessage());
         }
