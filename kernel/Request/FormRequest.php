@@ -25,8 +25,18 @@ class FormRequest extends \Hyperf\Validation\Request\FormRequest
     /**
      * 再次过滤空字符串字段.
      */
-    public function validated(): array
+
+    /**
+     * 获取 - 验证过的数据.
+     *
+     * 说明：再次过滤空字符串字段
+     *
+     * @param string|null $scene
+     */
+    public function validated(string $scene = null): array
     {
+        $scene && $this->scene($scene);
+
         return array_filter(parent::validated(), function ($value, $key) {
             return ! in_array($key, $this->filterEmptyStringField) || $value !== '';
         }, ARRAY_FILTER_USE_BOTH);
