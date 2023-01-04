@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Kernel\Constants;
 
-use Hyperf\Constants\AbstractConstants;
 use Hyperf\Constants\Annotation\Constants;
 
 /**
@@ -12,7 +11,7 @@ use Hyperf\Constants\Annotation\Constants;
  *
  * @Constants
  */
-class ErrorCode extends AbstractConstants
+class ErrorCode extends BaseConstants
 {
     /**
      * @Message("Server Error！")
