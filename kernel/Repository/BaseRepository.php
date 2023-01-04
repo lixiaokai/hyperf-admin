@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Kernel\Repository;
 
-use Kernel\Exception\DataSaveException;
-use Kernel\Exception\NotFoundException;
+use Hyperf\Database\Model\Builder;
 use Hyperf\Database\Model\Collection;
 use Hyperf\Database\Model\Model;
 use Hyperf\Database\Model\ModelNotFoundException;
+use Kernel\Exception\DataSaveException;
+use Kernel\Exception\NotFoundException;
 
 /**
  * 仓库 - 抽象基类.
@@ -19,6 +20,11 @@ abstract class BaseRepository
      * @var Model|string
      */
     protected string $modelClass;
+
+    public function getQuery(): Builder
+    {
+        return $this->modelClass::query();
+    }
 
     /**
      * @throws NotFoundException
