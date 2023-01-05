@@ -5,7 +5,7 @@ namespace Kernel\Helper;
 use Carbon\Carbon;
 
 /**
- * 数据格式化器 - 帮助类.
+ * 数据格式化器 - 助手类.
  */
 class FormatHelper
 {
