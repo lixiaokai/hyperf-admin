@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 use Hyperf\HttpServer\Router\Router;
 
-// 只保留网站 icon 图标的 get 请求
-Router::get('/favicon.ico', function () {
-    return '';
-});
+// 网站图标
+Router::get('/favicon.ico', fn () => '');
+// 健康检查
+Router::get('/health', fn () => ['code' => 200, 'message' => 'ok']);
