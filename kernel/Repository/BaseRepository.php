@@ -16,6 +16,8 @@ use Kernel\Exception\NotFoundException;
  */
 abstract class BaseRepository
 {
+    use Searchable;
+
     /**
      * @var Model|string
      */
