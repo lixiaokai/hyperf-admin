@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Demo\Controller;
+namespace App\Demo\Controller;
 
-use Demo\Collection\DemoCollection;
-use Demo\Request\DemoRequest;
-use Demo\Resource\DemoResource;
-use Demo\Service\DemoService;
+use App\Demo\Collection\DemoCollection;
+use App\Demo\Request\DemoRequest;
+use App\Demo\Resource\DemoResource;
+use Core\Controller\BaseController;
+use Core\Request\SearchRequest;
+use Core\Response\Response;
+use Core\Service\Demo\DemoService;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\RequestMapping;
-use Kernel\Controller\BaseController;
-use Kernel\Request\SearchRequest;
-use Kernel\Response\Response;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -44,7 +44,7 @@ class DemoController extends BaseController
      *
      * @RequestMapping(path="{id:\d+}", methods="get")
      */
-    public function detail(int $id): ResponseInterface
+    public function show(int $id): ResponseInterface
     {
         return DemoResource::make(['id' => 1, 'name' => '名称 1', 'remark' => '备注 1']);
     }

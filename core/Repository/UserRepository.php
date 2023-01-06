@@ -2,12 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Repository;
+namespace Core\Repository;
 
-use App\Model\User;
+use Core\Model\User;
 use Hyperf\Database\Model\Collection;
-use Kernel\Repository\BaseRepository;
-use Kernel\Repository\Searchable;
 
 /**
  * 用户信息 - 仓库类.
@@ -19,7 +17,5 @@ use Kernel\Repository\Searchable;
  */
 class UserRepository extends BaseRepository
 {
-    use Searchable;
-
     protected string $modelClass = User::class;
 }

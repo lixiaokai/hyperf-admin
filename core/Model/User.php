@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model;
-
-use Kernel\Model\BaseModel;
+namespace Core\Model;
 
 /**
  * 用户信息 - 模型.

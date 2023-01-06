@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Demo\Resource;
+namespace App\Demo\Resource;
 
-use Kernel\Resource\BaseResource;
+use Core\Resource\BaseResource;
 
 /**
  * 演示 - 详情 - 资源.

@@ -1,8 +1,8 @@
 <?php
 
-namespace Demo\Request;
+namespace App\Demo\Request;
 
-use Kernel\Request\FormRequest;
+use Core\Request\FormRequest;
 
 /**
  * 演示 - 创建|修改 - 请求类.

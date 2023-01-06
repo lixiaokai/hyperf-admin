@@ -1,11 +1,11 @@
 <?php
 
-namespace Demo\Service;
+namespace Core\Service\Demo;
 
-use App\Repository\UserRepository;
+use Core\Repository\UserRepository;
+use Core\Service\BaseService;
 use Hyperf\Contract\PaginatorInterface;
 use Hyperf\Di\Annotation\Inject;
-use Kernel\Service\BaseService;
 
 class DemoService extends BaseService
 {

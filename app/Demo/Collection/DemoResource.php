@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Demo\Collection;
+namespace App\Demo\Collection;
 
-use App\Model\User;
-use Kernel\Resource\BaseResource;
+use Core\Model\User;
+use Core\Resource\BaseResource;
 
 /**
  * 演示 - 列表 - 资源.

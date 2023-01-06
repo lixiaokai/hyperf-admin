@@ -1,14 +1,13 @@
 <?php
 
 declare(strict_types=1);
+
 /**
- * This file is part of Hyperf.
+ * 开发者工具 - 配置.
  *
- * @link     https://www.hyperf.io
- * @document https://hyperf.wiki
- * @contact  group@hyperf.io
- * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ * @see https://hyperf.wiki/2.2/#/zh-cn/devtool
  */
+
 return [
     'generator' => [
         'amqp' => [
@@ -27,6 +26,7 @@ return [
         ],
         'controller' => [
             'namespace' => 'App\\Controller',
+            'stub' => BASE_PATH . '/core/Devtool/Generator/stubs/controller.stub',
         ],
         'job' => [
             'namespace' => 'App\\Job',

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Demo\Collection;
+namespace App\Demo\Collection;
 
-use Kernel\Resource\BaseCollection;
+use Core\Resource\BaseCollection;
 
 /**
  * 演示 - 列表 - 集合.

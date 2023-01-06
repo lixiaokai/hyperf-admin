@@ -1,0 +1,37 @@
+<?php
+
+declare(strict_types=1);
+
+namespace %NAMESPACE%;
+
+use Core\Controller\BaseController;
+use Core\Response\Response;
+use Psr\Http\Message\ResponseInterface;
+
+class %CLASS% extends BaseController
+{
+    public function index(): ResponseInterface
+    {
+        return Response::success();
+    }
+
+    public function show(): ResponseInterface
+    {
+        return Response::success();
+    }
+
+    public function create(): ResponseInterface
+    {
+        return Response::success();
+    }
+
+    public function update(): ResponseInterface
+    {
+        return Response::success();
+    }
+
+    public function delete(): ResponseInterface
+    {
+        return Response::success();
+    }
+}

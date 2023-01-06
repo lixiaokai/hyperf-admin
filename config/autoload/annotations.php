@@ -11,8 +11,7 @@ return [
         // 注解扫描的目录
         'paths' => [
             BASE_PATH . '/app',
-            BASE_PATH . '/common',
-            BASE_PATH . '/demo',
+            BASE_PATH . '/core',
             BASE_PATH . '/kernel',
         ],
         // 忽略的注解名
