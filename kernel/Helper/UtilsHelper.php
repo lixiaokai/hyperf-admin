@@ -18,29 +18,24 @@ class UtilsHelper
     public static function realIp(): string
     {
         $request = ApplicationContext::getContainer()->get(RequestInterface::class);
-        $headers = $request->getHeaders();
-        $serverParams = $request->getServerParams();
 
-        switch (true) {
-            case ! empty($headers['x-real-ip'][0]):
-                $ip = $headers['x-real-ip'][0];
-                break;
-            case ! empty($headers['x-forwarded-for'][0]):
-                $ip = $headers['x-forwarded-for'][0];
-                break;
-            case ! empty($serverParams['http_client_ip']):
-                $ip = $serverParams['http_client_ip'];
-                break;
-            case ! empty($serverParams['http_x_real_ip']):
-                $ip = $serverParams['http_x_real_ip'];
-                break;
-            case ! empty($serverParams['http_x_forwarded_for']):
-                // 部分 CDN 会获取多层代理 IP，所以转成数组取第一个值
-                $ip = explode(',', $serverParams['http_x_forwarded_for'])[0];
-                break;
-            default:
-                $ip = $serverParams['remote_addr'] ?? '';
-                break;
+        // 一层一层获取，直到有值为止
+        $ip = $request->header('x-real-ip');
+        if (empty($ip)) {
+            $ip = $request->header('x-forwarded-for');
+        }
+        if (empty($ip)) {
+            $ip = $request->server('http_client_ip');
+        }
+        if (empty($ip)) {
+            $ip = $request->server('http_x_real_ip');
+        }
+        if (empty($ip)) {
+            // 部分 CDN 会获取多层代理 IP，所以转成数组取第一个值
+            $ip = explode(',', $request->server('http_x_forwarded_for', ''))[0];
+        }
+        if (empty($ip)) {
+            $ip = $request->server('remote_addr');
         }
 
         return $ip;
