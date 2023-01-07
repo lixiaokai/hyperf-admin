@@ -72,10 +72,14 @@ abstract class BaseRepository
     }
 
     /**
-     * @throws \Exception
+     * @throws DataSaveException
      */
     public function delete(Model $model): bool
     {
-        return $model->delete();
+        try {
+            return $model->delete();
+        } catch (\Exception $e) {
+            throw new DataSaveException('数据删除异常');
+        }
     }
 }
