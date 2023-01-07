@@ -5,32 +5,65 @@ declare(strict_types=1);
 namespace %NAMESPACE%;
 
 use Core\Controller\BaseController;
+use Core\Request\SearchRequest;
 use Core\Response\Response;
+use Hyperf\HttpServer\Annotation\Controller;
+use Hyperf\HttpServer\Annotation\RequestMapping;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * %CLASS% - 控制器.
+ *
+ * @Controller(prefix="%CLASS%")
+ */
 class %CLASS% extends BaseController
 {
-    public function index(): ResponseInterface
+    /**
+     * %CLASS% - 列表.
+     *
+     * @RequestMapping(path="", methods="get")
+     */
+    public function index(SearchRequest $request): ResponseInterface
     {
         return Response::success();
     }
 
-    public function show(): ResponseInterface
+    /**
+     * %CLASS% - 详情.
+     *
+     * @RequestMapping(path="{id}", methods="get")
+     */
+    public function show(int $id): ResponseInterface
     {
         return Response::success();
     }
 
+    /**
+     * %CLASS% - 创建.
+     *
+     * @RequestMapping(path="", methods="post")
+     */
     public function create(): ResponseInterface
     {
         return Response::success();
     }
 
-    public function update(): ResponseInterface
+    /**
+     * %CLASS% - 修改.
+     *
+     * @RequestMapping(path="{id}", methods="put")
+     */
+    public function update(int $id): ResponseInterface
     {
         return Response::success();
     }
 
-    public function delete(): ResponseInterface
+    /**
+     * %CLASS% - 删除.
+     *
+     * @RequestMapping(path="{id}", methods="delete")
+     */
+    public function delete(int $id): ResponseInterface
     {
         return Response::success();
     }

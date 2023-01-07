@@ -25,7 +25,7 @@ return [
             'namespace' => 'App\\Command',
         ],
         'controller' => [
-            'namespace' => 'App\\Controller',
+            'namespace' => 'App\\Admin\\Controller',
             'stub' => BASE_PATH . '/core/Devtool/Generator/stubs/controller.stub',
         ],
         'job' => [
