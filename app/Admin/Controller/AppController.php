@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Admin\Controller;
 
 use App\Admin\Collection\AppCollection;
+use App\Admin\Request\AppRequest;
 use App\Admin\Resource\AppResource;
 use Core\Controller\BaseController;
 use Core\Request\SearchRequest;
@@ -32,8 +33,9 @@ class AppController extends BaseController
      */
     public function index(SearchRequest $request): ResponseInterface
     {
-        $res = $this->service->search($request->searchParams());
-        return AppCollection::make($res);
+        $apps = $this->service->search($request->searchParams());
+
+        return AppCollection::make($apps);
     }
 
     /**
@@ -43,8 +45,9 @@ class AppController extends BaseController
      */
     public function show(int $id): ResponseInterface
     {
-        $res = $this->service->get($id);
-        return AppResource::make($res);
+        $app = $this->service->get($id);
+
+        return AppResource::make($app);
     }
 
     /**
@@ -52,9 +55,11 @@ class AppController extends BaseController
      *
      * @RequestMapping(path="", methods="post")
      */
-    public function create(): ResponseInterface
+    public function create(AppRequest $request): ResponseInterface
     {
-        return Response::success();
+        $app = $this->service->create($request->validated());
+
+        return Response::success(['id' => $app->id]);
     }
 
     /**
@@ -62,8 +67,37 @@ class AppController extends BaseController
      *
      * @RequestMapping(path="{id}", methods="put")
      */
-    public function update(int $id): ResponseInterface
+    public function update(int $id, AppRequest $request): ResponseInterface
     {
+        $app = $this->service->get($id);
+        $this->service->update($app, $request->validated(AppRequest::SCENE_UPDATE));
+
+        return Response::success();
+    }
+
+    /**
+     * 应用 - 启用.
+     *
+     * @RequestMapping(path="{id}/enable", methods="put")
+     */
+    public function enable(int $id): ResponseInterface
+    {
+        $app = $this->service->get($id);
+        $this->service->enable($app);
+
+        return Response::success();
+    }
+
+    /**
+     * 应用 - 禁用.
+     *
+     * @RequestMapping(path="{id}/disable", methods="put")
+     */
+    public function disable(int $id): ResponseInterface
+    {
+        $app = $this->service->get($id);
+        $this->service->disable($app);
+
         return Response::success();
     }
 
@@ -74,6 +108,9 @@ class AppController extends BaseController
      */
     public function delete(int $id): ResponseInterface
     {
+        $app = $this->service->get($id);
+        $this->service->delete($app);
+
         return Response::success();
     }
 }

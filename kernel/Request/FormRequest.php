@@ -27,7 +27,7 @@ class FormRequest extends \Hyperf\Validation\Request\FormRequest
      */
 
     /**
-     * 获取 - 验证过的数据.
+     * 获取 - 通过验证的数据.
      *
      * 说明：再次过滤空字符串字段
      *
