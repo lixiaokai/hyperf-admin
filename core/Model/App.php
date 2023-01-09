@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Core\Model;
 
 use Carbon\Carbon;
-use Core\Model\ActionTraits\AppActionTrail;
+use Core\Model\Traits\AppActionTrail;
 use Core\Model\Traits\StatusTrait;
 use Hyperf\Database\Model\SoftDeletes;
 
@@ -14,7 +14,7 @@ use Hyperf\Database\Model\SoftDeletes;
  *
  * 说明：租用应用
  *
- * @property int    $id        自增 ID
+ * @property int    $id        应用 ID
  * @property string $key       应用 Key
  * @property string $name      应用名称
  * @property int    $sort      排序
