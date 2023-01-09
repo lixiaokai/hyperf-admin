@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Model\ActionTraits;
+namespace Core\Model\Traits;
 
 trait AppActionTrail
 {
