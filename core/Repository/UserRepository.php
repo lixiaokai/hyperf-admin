@@ -10,7 +10,7 @@ use Hyperf\Database\Model\Collection;
 /**
  * 用户信息 - 仓库类.
  *
- * @method User              getById(string $id)
+ * @method User              getById(int $id)
  * @method Collection|User[] getByIds(array $ids, array $columns = ['*'])
  * @method User              create(array $data)
  * @method User              update(User $model, array $data)

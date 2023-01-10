@@ -11,7 +11,7 @@ use Hyperf\Database\Model\Collection;
 /**
  * 应用 - 仓库类.
  *
- * @method App              getById(string $id)
+ * @method App              getById(int $id)
  * @method App[]|Collection getByIds(array $ids, array $columns = ['*'])
  * @method App              create(array $data)
  * @method App              update(App $model, array $data)
