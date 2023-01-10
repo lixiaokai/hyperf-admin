@@ -28,11 +28,7 @@ class AppExceptionHandler extends ExceptionHandler
     {
         $this->stopPropagation();
 
-        $this->logger->error($throwable->getMessage(), [
-            'line' => $throwable->getLine(),
-            'file' => $throwable->getFile(),
-            'stack' => $throwable->getTrace(),
-        ]);
+        $this->log($throwable);
 
         return $response
             ->withHeader('Server', 'Hyperf')
@@ -43,5 +39,15 @@ class AppExceptionHandler extends ExceptionHandler
     public function isValid(\Throwable $throwable): bool
     {
         return true;
+    }
+
+    /**
+     * 记录 - 日志.
+     */
+    protected function log(\Throwable $throwable): void
+    {
+        $message = sprintf('%s on line %s in %s', $throwable->getMessage(), $throwable->getLine(), $throwable->getFile());
+        $message .= PHP_EOL . $throwable->getTraceAsString();
+        $this->logger->error($message);
     }
 }
