@@ -6,7 +6,7 @@ namespace Kernel\Exception;
 
 class BusinessException extends BaseException
 {
-    public function __construct(string $message = '业务异常', int $code = 400)
+    public function __construct(?string $message = '业务异常', int $code = 400)
     {
         parent::__construct($message, $code);
     }
