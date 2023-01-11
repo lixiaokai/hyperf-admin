@@ -11,6 +11,9 @@ use Hyperf\Constants\AbstractConstants;
  */
 abstract class BaseConstants extends AbstractConstants
 {
+    /**
+     * 获取 - 所有常量.
+     */
     public static function codes(): array
     {
         return ConstantsCollector::getValues(static::class);
@@ -30,5 +33,16 @@ abstract class BaseConstants extends AbstractConstants
             $k => $key,
             $v => call_user_func([static::class, $method], $key),
         ], static::codes());
+    }
+
+    /**
+     * 是否 - 存在该常量.
+     *
+     * @param mixed $code 常量值
+     * @return bool
+     */
+    public static function has($code): bool
+    {
+        return in_array($code, static::codes(), true);
     }
 }
