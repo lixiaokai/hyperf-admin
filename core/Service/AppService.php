@@ -5,6 +5,7 @@ namespace Core\Service;
 use Core\Model\App;
 use Core\Repository\AppRepository;
 use Hyperf\Contract\PaginatorInterface;
+use Hyperf\Database\Model\Collection;
 use Hyperf\Di\Annotation\Inject;
 use Kernel\Exception\BusinessException;
 
@@ -17,7 +18,7 @@ class AppService extends BaseService
     protected AppRepository $repo;
 
     /**
-     * 应用 - 列表.
+     * 应用 - 列表 ( 含筛选 ).
      */
     public function search(array $searchParams = []): PaginatorInterface
     {
@@ -26,6 +27,16 @@ class AppService extends BaseService
             ->orderBy('id');
 
         return $this->repo->search($searchParams, $query);
+    }
+
+    /**
+     * 应用 - 列表.
+     *
+     * @return App[]|Collection
+     */
+    public function list(string $status = null): Collection
+    {
+        return $this->repo->list();
     }
 
     /**

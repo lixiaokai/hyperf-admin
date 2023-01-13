@@ -31,9 +31,9 @@ class AppController extends BaseController
      *
      * @RequestMapping(path="", methods="get")
      */
-    public function index(SearchRequest $request): ResponseInterface
+    public function index(): ResponseInterface
     {
-        $apps = $this->service->search($request->searchParams());
+        $apps = $this->service->list();
 
         return AppCollection::make($apps);
     }

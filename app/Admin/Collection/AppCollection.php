@@ -12,4 +12,9 @@ use Core\Resource\BaseCollection;
 class AppCollection extends BaseCollection
 {
     public $collects = AppResource::class;
+
+    public function toArray(): array
+    {
+        return $this->collection->toArray();
+    }
 }
