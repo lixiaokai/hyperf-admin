@@ -7,12 +7,15 @@ namespace Core\Model;
 use Carbon\Carbon;
 use Core\Model\Traits\AppActionTrail;
 use Core\Model\Traits\StatusTrait;
+use Hyperf\Database\Model\Collection;
+use Hyperf\Database\Model\Relations\BelongsToMany;
+use Hyperf\Database\Model\Relations\HasMany;
 use Hyperf\Database\Model\SoftDeletes;
 
 /**
- * 应用 - 模型.
+ * 租户应用 - 模型.
  *
- * 说明：租用应用
+ * 说明：租用应用 ( 以后是否会加入别的应用再根据业务调整 )
  *
  * @property int    $id        应用 ID
  * @property string $key       应用 Key
@@ -22,6 +25,9 @@ use Hyperf\Database\Model\SoftDeletes;
  * @property Carbon $createdAt 创建时间
  * @property Carbon $updatedAt 修改时间
  * @property Carbon $deletedAt 删除时间
+ *
+ * @property Collection|Tenant[] $tenants 租户 ( 多条 )
+ * @property Collection|Menu[]   $menus   菜单 ( 多条 )
  */
 class App extends BaseModel
 {
@@ -49,4 +55,14 @@ class App extends BaseModel
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
     ];
+
+    public function tenants(): BelongsToMany
+    {
+        return $this->belongsToMany(Tenant::class);
+    }
+
+    public function menus(): HasMany
+    {
+        return $this->hasMany(Menu::class);
+    }
 }
