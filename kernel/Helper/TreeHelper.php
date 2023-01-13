@@ -37,10 +37,10 @@ class TreeHelper
      *
      * @param array  $lists         要转换的数据
      * @param string $idField       id 字段
-     * @param string $pidField      父 id 标记字段
-     * @param string $childrenField 子节点标记字段
+     * @param string $pidField      父 id 字段
+     * @param string $childrenField 子节点字段名
      * @param bool   $indexKey      输出的数组是否包含索引 key 值
-     * @param array  $rootVal       要获取数的根节点数值，默认值为 0 和 null
+     * @param array  $rootVal       根节点值 ( 默认值为 0 和 null )
      */
     public static function toTrees(
         array $lists,
