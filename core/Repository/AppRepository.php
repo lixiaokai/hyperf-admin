@@ -6,6 +6,7 @@ namespace Core\Repository;
 
 use Core\Constants\Status;
 use Core\Model\App;
+use Hyperf\Database\Model\Builder;
 use Hyperf\Database\Model\Collection;
 
 /**
@@ -19,6 +20,20 @@ use Hyperf\Database\Model\Collection;
 class AppRepository extends BaseRepository
 {
     protected string $modelClass = App::class;
+
+    /**
+     * 应用 - 列表.
+     *
+     * @return App[]|Collection
+     */
+    public function list(string $status = null): Collection
+    {
+        return $this->getQuery()
+            ->when(Status::has($status), fn (Builder $query) => $query->where('status', $status))
+            ->orderByDesc('sort')
+            ->orderBy('id')
+            ->get();
+    }
 
     /**
      * 应用 - 启用.
