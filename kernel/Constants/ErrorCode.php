@@ -14,7 +14,17 @@ use Hyperf\Constants\Annotation\Constants;
 class ErrorCode extends BaseConstants
 {
     /**
-     * @Message("Server Error！")
+     * @Message("未登录")
+     */
+    public const UNAUTHORIZED = 401;
+
+    /**
+     * @Message("无权限访问")
+     */
+    public const FORBIDDEN = 403;
+
+    /**
+     * @Message("内部服务器错误")
      */
     public const SERVER_ERROR = 500;
 }
