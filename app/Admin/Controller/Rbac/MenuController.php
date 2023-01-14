@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Admin\Controller;
+namespace App\Admin\Controller\Rbac;
 
 use App\Admin\Request\MenuRequest;
 use App\Admin\Resource\MenuResource;
@@ -17,7 +17,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * 菜单管理 - 控制器.
  *
- * @Controller(prefix="admin/menu")
+ * @Controller(prefix="admin/rbac/menu")
  */
 class MenuController extends BaseController
 {
@@ -26,6 +26,10 @@ class MenuController extends BaseController
 
     /**
      * 菜单管理 - 列表.
+     *
+     * 说明：
+     * 1. 后台菜单 ( 默认 )
+     * 2. 租户菜单 ?platform=tenant
      *
      * @RequestMapping(path="", methods="get")
      */
