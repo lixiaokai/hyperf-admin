@@ -6,6 +6,7 @@ namespace Core\Model;
 
 use Carbon\Carbon;
 use Core\Constants\RoleType;
+use Core\Model\Traits\RoleActionTrail;
 use Core\Model\Traits\StatusTrait;
 use Hyperf\Database\Model\Collection;
 use Hyperf\Database\Model\Relations\BelongsTo;
@@ -19,7 +20,7 @@ use Hyperf\Database\Model\Relations\HasMany;
  * @property int    $parentId  父 ID ( 租户角色才有上下级 )
  * @property string $type      类型 ( admin-总后台角色 tenantDefault-租户默认角色 tenantCustom-租户自定义角色 )
  * @property string $name      名称
- * @property string $desc      描述
+ * @property string $remark    备注
  * @property int    $sort      排序
  * @property string $status    状态 ( enable-启用 disable-禁用 )
  * @property Carbon $createdAt 创建时间
@@ -39,6 +40,7 @@ use Hyperf\Database\Model\Relations\HasMany;
 class Role extends BaseModel
 {
     use StatusTrait;
+    use RoleActionTrail;
 
     protected $table = 'role';
 
@@ -47,7 +49,7 @@ class Role extends BaseModel
         'parent_id',
         'type',
         'name',
-        'desc',
+        'remark',
         'sort',
         'status',
         'created_at',
