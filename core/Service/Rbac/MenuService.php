@@ -28,7 +28,7 @@ class MenuService extends BaseService
      *
      * 说明：默认获取总后台.
      */
-    public function getTrees(?string $platform = Platform::ADMIN): array
+    public function getTrees(string $platform = null): array
     {
         switch ($platform) {
             case Platform::TENANT: // 租户后台

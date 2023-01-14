@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Request;
+namespace App\Admin\Request\Rbac;
 
 use Core\Constants\MenuType;
 use Core\Constants\Platform;

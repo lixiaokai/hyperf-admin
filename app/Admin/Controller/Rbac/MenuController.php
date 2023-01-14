@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Admin\Controller\Rbac;
 
-use App\Admin\Request\MenuRequest;
-use App\Admin\Resource\MenuResource;
+use App\Admin\Request\Rbac\MenuRequest;
+use App\Admin\Resource\Rbac\MenuResource;
+use Core\Constants\Platform;
 use Core\Controller\BaseController;
 use Core\Response\Response;
 use Core\Service\Rbac\MenuService;
@@ -35,7 +36,7 @@ class MenuController extends BaseController
      */
     public function index(): ResponseInterface
     {
-        $platform = $this->request->input('platform');
+        $platform = $this->request->input('platform', Platform::ADMIN);
         $menus = $this->service->getTrees($platform);
 
         return Response::withData($menus);
