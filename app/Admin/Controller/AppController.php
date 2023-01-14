@@ -8,7 +8,6 @@ use App\Admin\Collection\AppCollection;
 use App\Admin\Request\AppRequest;
 use App\Admin\Resource\AppResource;
 use Core\Controller\BaseController;
-use Core\Request\SearchRequest;
 use Core\Response\Response;
 use Core\Service\AppService;
 use Hyperf\Di\Annotation\Inject;
