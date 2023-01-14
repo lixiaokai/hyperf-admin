@@ -17,7 +17,7 @@ use Hyperf\Database\Model\Relations\HasMany;
  *
  * @property int    $id        角色 ID
  * @property int    $parentId  父 ID ( 租户角色才有上下级 )
- * @property string $type      类型 ( system-系统角色 tenantDefault-租户默认角色 tenantCustom-租户自定义角色 )
+ * @property string $type      类型 ( admin-总后台角色 tenantDefault-租户默认角色 tenantCustom-租户自定义角色 )
  * @property string $name      名称
  * @property string $desc      描述
  * @property int    $sort      排序

@@ -15,9 +15,9 @@ use Hyperf\Constants\Annotation\Constants;
 class RoleType extends BaseConstants
 {
     /**
-     * @Text("系统角色")
+     * @Text("总后台角色")
      */
-    public const SYSTEM = 'system';
+    public const ADMIN = 'admin';
 
     /**
      * @Text("租户默认角色")
