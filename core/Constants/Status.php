@@ -11,8 +11,8 @@ use Hyperf\Constants\Annotation\Constants;
  *
  * @Constants
  *
- * @method static getColor(string $code)
- * @method static getText(string $code)
+ * @method static string getColor(string $code)
+ * @method static string getText(string $code)
  */
 class Status extends BaseConstants
 {

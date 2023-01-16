@@ -10,7 +10,7 @@ use Hyperf\Constants\Annotation\Constants;
  * 请求方式 - 常量.
  *
  * @Constants
- * @method static getText(string $code)
+ * @method static string getText(string $code)
  */
 class RequestMethod extends BaseConstants
 {

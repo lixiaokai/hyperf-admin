@@ -8,7 +8,7 @@ use Hyperf\Constants\Annotation\Constants;
  * 上下文 Key - 常量.
  *
  * @Constants
- * @method static getText(string $code)
+ * @method static string getText(string $code)
  */
 class ContextKey extends BaseConstants
 {

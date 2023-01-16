@@ -10,7 +10,7 @@ use Hyperf\Constants\Annotation\Constants;
  * 权限菜单类型 - 常量.
  *
  * @Constants
- * @method static getText(string $code)
+ * @method static string getText(string $code)
  */
 class MenuType extends BaseConstants
 {

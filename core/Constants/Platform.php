@@ -10,7 +10,7 @@ use Hyperf\Constants\Annotation\Constants;
  * 终端平台 - 常量.
  *
  * @Constants
- * @method static getText(string $code)
+ * @method static string getText(string $code)
  */
 class Platform extends BaseConstants
 {
