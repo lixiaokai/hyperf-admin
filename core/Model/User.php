@@ -6,6 +6,7 @@ namespace Core\Model;
 
 use Core\Constants\Status;
 use Core\Model\Traits\StatusTrait;
+use Core\Model\Traits\UserActionTrail;
 use Hyperf\Database\Model\Collection;
 use Hyperf\Database\Model\Relations\BelongsToMany;
 use Hyperf\Utils\Collection as UCollection;
@@ -30,6 +31,7 @@ use HyperfTest\Model\UserTest;
 class User extends BaseModel
 {
     use StatusTrait;
+    use UserActionTrail;
 
     protected $table = 'user';
 
@@ -50,12 +52,12 @@ class User extends BaseModel
     ];
 
     /**
-     * 获取 - 用户所有菜单.
+     * 获取 - 用户菜单.
      *
-     * @see UserTest::testAllMenus()
+     * @see UserTest::testMenus()
      * @return Menu[]|UCollection
      */
-    public function allMenus(): UCollection
+    public function menus(): UCollection
     {
         return $this->roles()
             ->with(['menus' => function (BelongsToMany $query) {

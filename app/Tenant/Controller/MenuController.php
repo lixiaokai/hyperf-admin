@@ -37,7 +37,7 @@ class MenuController extends BaseController
      */
     public function index(): ResponseInterface
     {
-        $menuTree = $this->service->getUserTrees();
+        $menuTree = $this->service->userTrees();
 
         return Response::withData($menuTree);
     }

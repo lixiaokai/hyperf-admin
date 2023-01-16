@@ -32,22 +32,32 @@ class MenuRepository extends BaseRepository
     protected AppRepository $appRepo;
 
     /**
-     * 权限菜单 - 获取 - 总后台所有权限菜单树.
+     * 权限菜单 - 获取 - 某终端平台权限菜单树.
+     *
+     * @return Collection|Menu[]
      */
-    public function getAdminTrees(string $status = null): array
+    public function getList(string $platform = null, string $status = null): Collection
     {
-        $menus = $this->getQuery()
-            ->where(Menu::column('platform'), Platform::ADMIN)
+        return $this->getQuery()
+            ->when(Platform::has($platform), fn (Builder $query) => $query->where(Menu::column('platform'), $platform))
             ->when(Status::has($status), fn (Builder $query) => $query->where(Menu::column('status'), $status))
             ->orderByDesc(Menu::column('sort'))
             ->orderBy(Menu::column('id'))
             ->get();
+    }
+
+    /**
+     * 权限菜单 - 获取 - 总后台权限菜单树.
+     */
+    public function getAdminTrees(string $status = null): array
+    {
+        $menus = $this->getList(Platform::ADMIN, $status);
 
         return TreeHelper::toTrees(self::buildMenus($menus)->toArray());
     }
 
     /**
-     * 权限菜单 - 获取 - 租户后台所有权限菜单树.
+     * 权限菜单 - 获取 - 租户后台权限菜单树.
      *
      * 说明：包含顶层应用菜单.
      */

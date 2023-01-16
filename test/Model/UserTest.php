@@ -37,12 +37,12 @@ class UserTest extends TestCase
     }
 
     /**
-     * @see User::allMenus()
+     * @see User::menus()
      */
-    public function testAllMenus()
+    public function testMenus()
     {
         $user = User::find(2);
-        $menus = $user->allMenus();
+        $menus = $user->menus();
 
         self::assertInstanceOf(UCollection::class, $menus);
         self::assertInstanceOf(Menu::class, $menus->first());

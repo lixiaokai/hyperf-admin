@@ -26,7 +26,8 @@ use Hyperf\Database\Model\Relations\HasMany;
  * @property Carbon $createdAt 创建时间
  * @property Carbon $updatedAt 修改时间
  *
- * @property string $typeText 类型 - 文字
+ * @property string $platformKey 终端平台 - key
+ * @property string $typeText    类型 - 文字
  *
  * @property Role                $parent   父级角色
  * @property Collection|Role[]   $children 子级角色 ( 多条 )
@@ -41,6 +42,13 @@ class Role extends BaseModel
 {
     use StatusTrait;
     use RoleActionTrail;
+
+    /**
+     * 超级管理员角色 ID.
+     *
+     * 说明：该角色拥有总后台所有权
+     */
+    public const SUPER_ADMIN_ID = 1;
 
     protected $table = 'role';
 
@@ -67,6 +75,11 @@ class Role extends BaseModel
     public function getTypeTextAttribute(): string
     {
         return RoleType::getText($this->type);
+    }
+
+    public function getPlatformKeyAttribute(): string
+    {
+        return RoleType::getPlatformKey($this->type);
     }
 
     public function parent(): BelongsTo

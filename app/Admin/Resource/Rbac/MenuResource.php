@@ -23,7 +23,7 @@ class MenuResource extends BaseResource
             'platform' => $this->resource->platform, // 终端平台 Key
             'platformText' => $this->resource->platformText, // 终端平台 - 文字
             'appId' => $this->resource->appId ?? '', // 应用 ID
-            'appName' => \data_get($this->resource->app, 'name', ''), // 应用名称
+            'appName' => data_get($this->resource->app, 'name', ''), // 应用名称
             'method' => $this->resource->method ?? '', // 请求方式
             'uri' => $this->resource->uri ?? '', // 路由 uri
             'name' => $this->resource->name, // 菜单名称

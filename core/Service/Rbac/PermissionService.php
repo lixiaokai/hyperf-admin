@@ -38,7 +38,7 @@ class PermissionService extends BaseService
         // Todo: 临时写死
         $user = User::find(2);
 
-        return $user->allMenus();
+        return $user->menus();
     }
 
     /**

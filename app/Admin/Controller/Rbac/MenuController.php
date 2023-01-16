@@ -37,7 +37,7 @@ class MenuController extends BaseController
     public function index(): ResponseInterface
     {
         $platform = $this->request->input('platform', Platform::ADMIN);
-        $menus = $this->service->getTrees($platform);
+        $menus = $this->service->trees($platform);
 
         return Response::withData($menus);
     }

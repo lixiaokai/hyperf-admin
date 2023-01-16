@@ -2,14 +2,16 @@
 
 namespace Core\Model\Traits;
 
-trait RoleActionTrail
+use Core\Model\Role;
+
+trait UserActionTrail
 {
     /**
-     * 是否 - 超级管理员角色.
+     * 是否 - 超级管理员.
      */
     public function isSuperAdmin(): bool
     {
-        return $this->id === self::SUPER_ADMIN_ID;
+        return $this->roles->contains(Role::SUPER_ADMIN_ID);
     }
 
     /**

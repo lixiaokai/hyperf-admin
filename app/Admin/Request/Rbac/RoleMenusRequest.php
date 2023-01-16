@@ -3,7 +3,7 @@
 namespace App\Admin\Request\Rbac;
 
 use Core\Constants\Status;
-use Core\Model\Role;
+use Core\Model\Menu;
 use Core\Request\FormRequest;
 use Hyperf\Validation\Rule;
 
@@ -17,7 +17,7 @@ class RoleMenusRequest extends FormRequest
         return [
             'menuIds' => ['bail', 'array'],
             'menuIds.*' => ['bail', 'integer',
-                Rule::exists(Role::table(), 'id')->where('status', Status::ENABLE),
+                Rule::exists(Menu::table(), 'id')->where('status', Status::ENABLE),
             ],
         ];
     }

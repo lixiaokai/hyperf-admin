@@ -58,7 +58,7 @@ class RoleController extends BaseController
     }
 
     /**
-     * 角色管理 - 创建.
+     * 角色管理 - 创建 - 基础信息.
      *
      * @RequestMapping(path="", methods="post")
      */
