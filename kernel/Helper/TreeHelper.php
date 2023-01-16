@@ -38,7 +38,7 @@ class TreeHelper
      * @param array  $lists         要转换的数据
      * @param string $idField       id 字段
      * @param string $pidField      父 id 字段
-     * @param string $childrenField 子节点字段名
+     * @param string $childrenField 子节点字段
      * @param bool   $indexKey      输出的数组是否包含索引 key 值
      * @param array  $rootVal       根节点值 ( 默认值为 0 和 null )
      */
@@ -76,8 +76,8 @@ class TreeHelper
      * 查看上面 toTrees() 方法的例子，倒过来即可.
      *
      * @param array  $trees         原来的树
-     * @param string $idField       id 标记字段
-     * @param string $childrenField 子节点标记字段
+     * @param string $idField       id 字段
+     * @param string $childrenField 子节点字段
      * @param bool   $addChildren   列表数组是否附加子节点
      * @param bool   $indexKey      输出的数组是否包含索引 key 值
      * @param int    $depthVal      节点深度值 ( 从 0 开始，可用于输出节点时缩进 )
@@ -126,16 +126,17 @@ class TreeHelper
      * ];
      * 查找后的数据 $parents = self::findParent($lists, 4)：
      * $parents = [
-     *   ['id' => 2, 'parentId' => 0, 'name' => '一级 2'],
-     *   ['id' => 3, 'parentId' => 2, 'name' => '二级 3'],
-     *   ['id' => 4, 'parentId' => 3, 'name' => '三级 4'],
+     *   2 => ['id' => 2, 'parentId' => 0, 'name' => '一级 2'],
+     *   3 => ['id' => 3, 'parentId' => 2, 'name' => '二级 3'],
+     *   4 => ['id' => 4, 'parentId' => 3, 'name' => '三级 4'],
      * ];
      *
-     * @param array  $lists    数据列表
-     * @param int    $idVal    要查找的 ID 值
-     * @param string $idField  id 字段名称
-     * @param string $pidField 父 ID 字段名称
-     * @param array  $rootVal  要获取数的根节点数值，默认值为 0 和 null
+     * @param  array  $lists    数据列表
+     * @param  int    $idVal    要查找的 ID 值
+     * @param  string $idField  id 字段名称
+     * @param  string $pidField 父 ID 字段名称
+     * @param  array  $rootVal  根节点值 ( 默认值为 0 和 null )
+     * @return array  返回带索引的数组列表
      */
     public static function findParents(
         array $lists,
