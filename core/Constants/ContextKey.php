@@ -21,4 +21,9 @@ class ContextKey extends BaseConstants
      * @Text("用户模型")
      */
     public const USER = 'user';
+
+    /**
+     * @Text("租户模型")
+     */
+    public const TENANT = 'tenant';
 }
