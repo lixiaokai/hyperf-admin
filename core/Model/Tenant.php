@@ -46,7 +46,7 @@ class Tenant extends BaseModel
 
     public function apps(): BelongsToMany
     {
-        return $this->belongsToMany(App::class);
+        return $this->belongsToMany(App::class, 'tenant_app');
     }
 
     public function roles(): BelongsToMany
