@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Core\Model;
 
-use Core\Constants\Status;
 use Core\Model\Traits\StatusTrait;
 use Core\Model\Traits\UserActionTrail;
 use Hyperf\Database\Model\Collection;
 use Hyperf\Database\Model\Relations\BelongsToMany;
-use Hyperf\Utils\Collection as UCollection;
 use HyperfTest\Model\UserTest;
 
 /**
@@ -50,24 +48,6 @@ class User extends BaseModel
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
-
-    /**
-     * 获取 - 用户菜单.
-     *
-     * @see UserTest::testMenus()
-     * @return Menu[]|UCollection
-     */
-    public function menus(): UCollection
-    {
-        return $this->roles()
-            ->with(['menus' => function (BelongsToMany $query) {
-                $query->where(Menu::column('status'), Status::ENABLE);
-            }])
-            ->get()
-            ->pluck('menus')
-            ->flatten()
-            ->unique('id');
-    }
 
     /**
      * @see UserTest::testRoles()
