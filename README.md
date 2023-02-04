@@ -68,59 +68,89 @@ php bin/hyperf.php gen:job DemoJob
 
 ## 2. .php-cs-fixer.php 配置
 
-设置中搜索 `php-cs-fixer`，并配置上，使得团队代码风格统一，且支持简单的质量检查
+设置中搜索 `php-cs-fixer`，并配置上，使得团队统一代码风格
 
 ## 3. 推荐安装插件 ( Plugins )
 
 - .env files support
 - PHP Annotations
 
+## 4. PhpStorm 识别协程上下文获取后的结果类型
+
+根目录文件 .phpstorm.meta.php
+
+```php
+<?php
+
+namespace PHPSTORM_META {
+
+    // Reflect
+    override(\Psr\Container\ContainerInterface::get(0), map('@'));
+    override(\Hyperf\Context\Context::get(), map([
+        'user' => \Core\Model\User::class,     // 定义 Context::get('user')
+        'tenant' => \Core\Model\Tenant::class, // 定义 Context::get('tenant')
+        0 => '@'
+    ]));
+    override(\make(0), map('@'));
+    override(\di(0), map('@'));
+
+}
+```
+
 # 目录
 
-# 说明
+```
+├─ app      // 各端应用
+│  ├─Admin  // 总后端
+│  ├─Common // 公共资源端 ( 不需要权限验证，部分可能需要登录鉴权 )
+│  ├─Demo   // 示例端
+│  ├─Tenant // 租户端 ( 多租户模式 )
+├─ bin      // 入口文件
+├─ config   // 配置文件
+├─ core     // 公共基类 ( 继承 kernel 中的基类，一般开发人员可斟酌修改 )
+├─ kernel   // 内核基类 ( 后面会把这目录制作成组件，一般由底层开发人员修改 )
+├─ storage  // 语言文件
 
-- app - 通用目录
-- common - 公共资源目录
-- demo - 示例目录
+```
 
-## 注意：根目录增加文件夹时需要修改的地方
+**注意：根目录增加文件夹时需要修改的地方**
 
-### 1. composer.json 增加自动加载目录 ( autoload )
+## 1. composer.json 增加自动加载目录 ( autoload )
 ```json
 {
   "autoload": {
     "psr-4": {
       "App\\": "app/",
-      "Common\\": "common/",
-      "Demo\\": "demo/"
+      "Core\\": "core/",
+      "Kernel\\": "kernel/"
     },
     "files": []
   }
 }
 ```
 
-### 2. config/autoload/watcher.php 增加热更新目录
+## 2. config/autoload/watcher.php 增加热更新目录
 ```php
 return [
     'driver' => ScanFileDriver::class,
     'bin' => 'php',
     'watch' => [
-        'dir' => ['app', 'config', 'common', 'demo'],
+        'dir' => ['app', 'config', 'core', 'kernel', 'vendor'],
         'file' => ['.env'],
         'scan_interval' => 2000,
     ],
 ];
 ```
 
-### 3. config/autoload/annotations.php 增加注解扫描目录
+## 3. config/autoload/annotations.php 增加注解扫描目录
 ```php
 return [
     'scan' => [
         // 注解扫描的目录
         'paths' => [
             BASE_PATH . '/app',
-            BASE_PATH . '/common',
-            BASE_PATH . '/demo',
+            BASE_PATH . '/core',
+            BASE_PATH . '/kernel',
         ],
         // 忽略的注解名
         'ignore_annotations' => [
