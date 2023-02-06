@@ -19,7 +19,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * 演示首页 - 控制器.
  *
- * @Controller(prefix="demo")
+ * @Controller(prefix="demo/demo")
  */
 class DemoController extends BaseController
 {
