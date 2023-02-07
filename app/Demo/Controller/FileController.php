@@ -33,7 +33,7 @@ class FileController extends BaseController
         // 组装文件存储路径
         $dt = Carbon::now();
         $filePath = $dt->format('ym');
-        $fileName = $dt->format('Hisu') . '.' . $file->getExtension();
+        $fileName = $dt->format('Hisu') . '.' . strtolower($file->getExtension());
         $saveFileName = $filePath . '/' . $fileName;
         $stream = fopen($file->getRealPath(), 'r+');
 
@@ -43,9 +43,17 @@ class FileController extends BaseController
             throw new BusinessException($e->getMessage());
         }
 
-        fclose($stream);
+        // 可能存储适配器会提前关闭 $stream，比如阿里云 OSS 再处理 writeStream 时关闭了 $stream，这里就不再关闭
+        if (is_resource($stream)) {
+            fclose($stream);
+        }
 
-
-        return Response::success();
+        return Response::success([
+            'name' => $file->getClientFilename(),
+            'type' => $file->getClientMediaType(),
+            'size' => $file->getSize(),
+            'path' => $saveFileName,
+            'fullPath' => '根据不同的存储适配器组装',
+        ]);
     }
 }
