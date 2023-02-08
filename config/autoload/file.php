@@ -9,8 +9,8 @@ declare(strict_types=1);
  * @see https://hyperf.wiki/2.2/#/zh-cn/filesystem 文档
  */
 return [
-    // 选择 storage 下对应驱动的键即可
-    'default' => 'oss',
+    // 选择 storage 下对应驱动引擎的键即可
+    'default' => env('FILESYSTEM_DRIVER', 'local'),
     'storage' => [
         'local' => [
             'driver' => \Hyperf\Filesystem\Adapter\LocalAdapterFactory::class,
