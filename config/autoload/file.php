@@ -10,7 +10,7 @@ declare(strict_types=1);
  */
 return [
     // 选择 storage 下对应驱动引擎的键即可
-    'default' => 'local',
+    'default' => env('FILESYSTEM_DRIVER', 'local'),
     'domain' => env('FILESYSTEM_DOMAIN', 'https://res.xxxx.com'),
     'storage' => [
         'local' => [
