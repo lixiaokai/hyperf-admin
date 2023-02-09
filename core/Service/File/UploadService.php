@@ -27,6 +27,8 @@ class UploadService extends BaseService
 
     /**
      * 上传并入库.
+     *
+     * @throws FilesystemException
      */
     public function upload(UploadedFile $uploadedFile): Attachment
     {
@@ -38,10 +40,15 @@ class UploadService extends BaseService
         $hash = md5_file($uploadedFile->getRealPath());
         $attachment = $this->attachmentService->getByHash($hash, false);
 
-        // 2. 不存在则上传 + 入库
+        // 2. 附件上传、记录处理
         if ($attachment === null) {
-            $fullSaveName = $this->uploadHandle($uploadedFile);
-            $attachment = $this->attachmentService->create($uploadedFile, $fullSaveName, $hash);
+            // 无记录且文件不存在则上传 + 创建记录
+            $path = $this->uploadHandle($uploadedFile);
+            $attachment = $this->attachmentService->create($uploadedFile, ['path' => $path, 'hash' => $hash]);
+        } elseif (! $this->filesystem->fileExists($attachment->path)) {
+            // 有记录但文件不存在则上传 + 更新记录
+            $path = $this->uploadHandle($uploadedFile);
+            $attachment = $this->attachmentService->update($attachment, ['path' => $path, 'hash' => $hash], $uploadedFile);
         }
 
         return $attachment;
@@ -60,7 +67,8 @@ class UploadService extends BaseService
         try {
             $this->filesystem->writeStream($fullSaveName, $this->uploadedFile->getStream()->detach());
         } catch (FilesystemException $e) {
-            throw new BusinessException($e->getMessage());
+            $this->logger->error($e->getMessage());
+            throw new BusinessException('文件上传异常，请重试操作');
         }
 
         return $fullSaveName;

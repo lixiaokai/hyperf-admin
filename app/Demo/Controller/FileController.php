@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Demo\Controller;
 
+use App\Demo\Resource\FileResource;
 use Core\Controller\BaseController;
-use Core\Response\Response;
 use Core\Service\File\UploadService;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\RequestMapping;
+use League\Flysystem\FilesystemException;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -26,12 +27,13 @@ class FileController extends BaseController
      * 文件系统演示 - 上传.
      *
      * @RequestMapping(path="upload", methods="post")
+     * @throws FilesystemException
      */
     public function upload(): ResponseInterface
     {
         $uploadedFile = $this->request->file('upload');
         $res = $this->uploadService->upload($uploadedFile);
 
-        return Response::success($res);
+        return FileResource::make($res);
     }
 }

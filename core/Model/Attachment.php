@@ -4,6 +4,7 @@ declare (strict_types=1);
 namespace Core\Model;
 
 use Carbon\Carbon;
+use Core\Helper\FilesystemHelper;
 use Hyperf\Database\Model\SoftDeletes;
 
 /**
@@ -20,6 +21,8 @@ use Hyperf\Database\Model\SoftDeletes;
  * @property Carbon $createdAt 创建时间
  * @property Carbon $updatedAt 修改时间
  * @property string $deletedAt 删除时间 ( 软删除 )
+ *
+ * @property string $fullPath 完整路径
  */
 class Attachment extends BaseModel
 {
@@ -30,4 +33,9 @@ class Attachment extends BaseModel
     protected $fillable = ['id', 'user_id', 'storage_mode', 'name', 'type', 'size', 'path', 'hash', 'created_at', 'updated_at', 'deleted_at'];
 
     protected $casts = ['id' => 'integer', 'user_id' => 'integer', 'size' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+
+    public function getFullPathAttribute(): string
+    {
+        return FilesystemHelper::getFullPath($this->path);
+    }
 }

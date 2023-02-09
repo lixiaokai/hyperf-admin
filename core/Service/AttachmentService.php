@@ -57,25 +57,17 @@ class AttachmentService extends BaseService
     /**
      * 附件 - 创建.
      */
-    public function create(UploadedFile $uploadedFile, string $fullSaveName, string $hash): Attachment
+    public function create(UploadedFile $uploadedFile, array $data): Attachment
     {
-        return $this->repo->create([
-            'userId' => Context::get(ContextKey::UID),
-            'storageMode' => config('file.default'),
-            'name' => $uploadedFile->getClientFilename(),
-            'type' => $uploadedFile->getClientMediaType(),
-            'size' => $uploadedFile->getSize(),
-            'path' => $fullSaveName,
-            'hash' => $hash,
-        ]);
+        return $this->repo->create($this->buildData($uploadedFile, $data));
     }
 
     /**
      * 附件 - 修改.
      */
-    public function update(Attachment $attachment, array $data): Attachment
+    public function update(Attachment $attachment, array $data, UploadedFile $uploadedFile): Attachment
     {
-        return $this->repo->update($attachment, $data);
+        return $this->repo->update($attachment, $this->buildData($uploadedFile, $data));
     }
 
     /**
@@ -84,5 +76,21 @@ class AttachmentService extends BaseService
     public function delete(Attachment $attachment): bool
     {
         return $this->repo->delete($attachment);
+    }
+
+    /**
+     * 附件 - 组装数据.
+     */
+    protected function buildData(UploadedFile $uploadedFile, array $data): array
+    {
+        return [
+            'userId' => Context::get(ContextKey::UID),
+            'storageMode' => config('file.default'),
+            'name' => $uploadedFile->getClientFilename(),
+            'type' => $uploadedFile->getClientMediaType(),
+            'size' => $uploadedFile->getSize(),
+            'path' => $data['path'],
+            'hash' => $data['hash'],
+        ];
     }
 }
