@@ -10,11 +10,12 @@ declare(strict_types=1);
  */
 return [
     // 选择 storage 下对应驱动引擎的键即可
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => 'local',
+    'domain' => env('FILESYSTEM_DOMAIN', 'https://res.xxxx.com'),
     'storage' => [
         'local' => [
             'driver' => \Hyperf\Filesystem\Adapter\LocalAdapterFactory::class,
-            'root' => BASE_PATH . '/runtime',
+            'root' => BASE_PATH . '/public/attachment',
         ],
         'ftp' => [
             'driver' => \Hyperf\Filesystem\Adapter\FtpAdapterFactory::class,
