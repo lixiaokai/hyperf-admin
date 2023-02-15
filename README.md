@@ -52,6 +52,9 @@ composer kill
 ```
 # 发布 Redis 消息异步队列配置 ( 如果要发布其他组件的配置，直接修改最后的组件名即可 )
 php bin/hyperf.php vendor:publish hyperf/async-queue
+
+# 执行数据填充
+php bin/hyperf.php db:seed --path=seeders/userSeeder.php
 ```
 
 ## 异步队列 - 创建消费任务
