@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tenant\Middleware;
 
-use Core\Service\Rbac\PermissionService;
-use Hyperf\Di\Annotation\Inject;
+use Hyperf\HttpServer\Router\Dispatched;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -17,9 +16,6 @@ use Psr\Http\Server\RequestHandlerInterface;
  */
 class PermissionMiddleware implements MiddlewareInterface
 {
-    /** @Inject */
-    protected PermissionService $permissionService;
-
     protected ContainerInterface $container;
 
     public function __construct(ContainerInterface $container)
@@ -29,7 +25,11 @@ class PermissionMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $this->permissionService->check($request->getMethod(), $request->getUri()->getPath());
+        /** @var Dispatched $dispatched */
+        $dispatched = $request->getAttribute(Dispatched::class);
+        $route = $dispatched->handler->route; // 当前访问路由 例如：/admin/user/{id:\d+}
+
+        // $this->permissionService->check($request->getMethod(), $request->getUri()->getPath());
 
         return $handler->handle($request);
     }

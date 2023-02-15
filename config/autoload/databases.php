@@ -41,11 +41,11 @@ return [
         ],
         'commands' => [
             'gen:model' => [
-                'path' => 'core/Model',                              // 模型存储路径
-                'force_casts' => true,                               // 是否强制重置 casts 参数
+                'path' => 'core/Model/Admin',                        // 模型存储路径
                 'inheritance' => 'BaseModel',                        // 父类
                 'uses' => '',                                        // 配合 inheritance 使用
                 'table_mapping' => [],
+                'force_casts' => true,                               // 是否强制重置 casts 参数
                 'refresh_fillable' => true,                          // 是否刷新 fillable 参数
                 'with_comments' => true,                             // 是否增加字段注释
                 'property_case' => ModelOption::PROPERTY_CAMEL_CASE, // 字段类型 ( 0 蛇形 1 驼峰 )

@@ -35,4 +35,24 @@ class TaskController extends BaseController
     {
         return Response::success([], '任务管理 - 列表');
     }
+
+    /**
+     * 任务管理 - 详情.
+     *
+     * @RequestMapping(path="{id:\d+}", methods="get")
+     */
+    public function show(int $id): ResponseInterface
+    {
+        return Response::success(['id' => $id], '任务管理 - 详情');
+    }
+
+    /**
+     * 任务管理 - 修改.
+     *
+     * @RequestMapping(path="{id:\d+}", methods="put")
+     */
+    public function update(int $id): ResponseInterface
+    {
+        return Response::success(['id' => $id], '任务管理 - 修改');
+    }
 }
