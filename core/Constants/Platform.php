@@ -20,7 +20,7 @@ class Platform extends BaseConstants
     public const ADMIN = 'admin';
 
     /**
-     * @Text("租户后台")
+     * @Text("卖家")
      */
-    public const TENANT = 'tenant';
+    public const SELLER = 'seller';
 }
