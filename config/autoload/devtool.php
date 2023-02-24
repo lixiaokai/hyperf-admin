@@ -12,33 +12,33 @@ return [
     'generator' => [
         'amqp' => [
             'consumer' => [
-                'namespace' => 'App\\Amqp\\Consumer',
+                'namespace' => 'Core\\Amqp\\Consumer',
             ],
             'producer' => [
-                'namespace' => 'App\\Amqp\\Producer',
+                'namespace' => 'Core\\Amqp\\Producer',
             ],
         ],
         'aspect' => [
-            'namespace' => 'App\\Aspect',
+            'namespace' => 'Core\\Aspect',
         ],
         'command' => [
-            'namespace' => 'App\\Command',
+            'namespace' => 'Core\\Command',
         ],
         'controller' => [
             'namespace' => 'App\\Admin\\Controller',
             'stub' => BASE_PATH . '/core/Devtool/Generator/stubs/controller.stub',
         ],
         'job' => [
-            'namespace' => 'App\\Job',
+            'namespace' => 'Core\\Job',
         ],
         'listener' => [
-            'namespace' => 'App\\Listener',
+            'namespace' => 'Core\\Listener',
         ],
         'middleware' => [
             'namespace' => 'Core\\Middleware',
         ],
         'Process' => [
-            'namespace' => 'App\\Processes',
+            'namespace' => 'Core\\Processes',
         ],
     ],
 ];
