@@ -2,6 +2,7 @@
 
 namespace HyperfTest\Model;
 
+use Core\Model\Admin;
 use Core\Model\Menu;
 use Core\Model\Role;
 use Core\Model\Tenant;
@@ -13,7 +14,16 @@ use PHPUnit\Framework\TestCase;
 class UserTest extends TestCase
 {
     /**
-     * @see User::$roles
+     * @see User::admin()
+     */
+    public function testAdmin()
+    {
+        $user = User::find(1);
+
+        self::assertInstanceOf(Admin::class, $user->admin);
+    }
+
+    /**
      * @see User::roles()
      */
     public function testRoles()
@@ -25,7 +35,6 @@ class UserTest extends TestCase
     }
 
     /**
-     * @see User::$tenants
      * @see User::tenants()
      */
     public function testTenants()

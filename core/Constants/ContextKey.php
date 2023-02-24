@@ -13,17 +13,22 @@ use Hyperf\Constants\Annotation\Constants;
 class ContextKey extends BaseConstants
 {
     /**
-     * @Text("用户 UID")
+     * 用户 UID.
      */
     public const UID = 'uid';
 
     /**
-     * @Text("用户模型")
+     * 用户模型.
      */
     public const USER = 'user';
 
     /**
-     * @Text("租户模型")
+     * 总后台用户模型.
+     */
+    public const ADMIN = 'admin';
+
+    /**
+     * 租户模型.
      */
     public const TENANT = 'tenant';
 }
