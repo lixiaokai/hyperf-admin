@@ -10,10 +10,10 @@ use Hyperf\Di\Annotation\AbstractAnnotation;
  * @Annotation
  * @Target({"METHOD"})
  */
-class AdditionalPermissions extends AbstractAnnotation
+class AttachPermissions extends AbstractAnnotation
 {
     /**
-     * @var array|string
+     * @var array|string 例: GET:/user/{id}
      */
     public $routes;
 }

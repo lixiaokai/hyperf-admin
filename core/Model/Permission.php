@@ -13,15 +13,16 @@ use Yadakhov\InsertOnDuplicateKey;
 /**
  * 权限 - 模型.
  *
- * @property int    $id               权限菜单 ID
- * @property string $platform         终端平台 ( admin-总后台 seller-卖家 )
- * @property string $method           请求方式 ( GET POST PUT DELETE )
- * @property string $route            路由
- * @property string $additionalRoutes 附加路由
- * @property string $desc             备注
- * @property Carbon $createdAt        创建时间
- * @property Carbon $updatedAt        修改时间
- * @property Carbon $deletedAt        删除时间 ( 软删除 )
+ * @property int    $id           权限菜单 ID
+ * @property string $platform     终端平台 ( admin-总后台 seller-卖家 )
+ * @property string $route        路由 ( method + route 组成 )
+ * @property string $attachRoutes 附加路由
+ * @property string $name         名称
+ * @property string $desc         备注
+ * @property int    $sort         排序
+ * @property Carbon $createdAt    创建时间
+ * @property Carbon $updatedAt    修改时间
+ * @property Carbon $deletedAt    删除时间 ( 软删除 )
  *
  * @property Collection|Role[] $roles 角色 ( 多条 )
  */
@@ -32,11 +33,23 @@ class Permission extends BaseModel
 
     protected $table = 'permission';
 
-    protected $fillable = ['id', 'platform', 'method', 'route', 'additional_routes', 'desc', 'created_at', 'updated_at', 'deleted_at'];
+    protected $fillable = [
+        'id',
+        'platform',
+        'route',
+        'attach_routes',
+        'name',
+        'desc',
+        'sort',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 
     protected $casts = [
         'id' => 'integer',
-        'additional_routes' => 'json',
+        'attach_routes' => 'json',
+        'sort' => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
