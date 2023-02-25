@@ -18,7 +18,7 @@ use Yadakhov\InsertOnDuplicateKey;
  * @property string $route        路由 ( method + route 组成 )
  * @property string $attachRoutes 附加路由
  * @property string $name         名称
- * @property string $desc         备注
+ * @property string $desc         描述
  * @property int    $sort         排序
  * @property Carbon $createdAt    创建时间
  * @property Carbon $updatedAt    修改时间

@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Core\Model;
 
 use Carbon\Carbon;
+use Core\Constants\Platform;
 use Core\Constants\RoleType;
 use Core\Constants\Status;
 use Core\Model\Traits\AdminActionTrail;
+use Hyperf\Cache\Annotation\Cacheable;
 use Hyperf\Database\Model\Collection;
 use Hyperf\Database\Model\Relations\BelongsTo;
 use Hyperf\Database\Model\Relations\BelongsToMany;
@@ -46,7 +48,7 @@ class Admin extends BaseModel
     ];
 
     /**
-     * 获取 - 用户所有权限.
+     * 获取 - 用户权限.
      *
      * @see AdminTest::testGetPermissions()
      * @return Permission[]|UCollection
@@ -60,6 +62,22 @@ class Admin extends BaseModel
             ->pluck('permissions') // 取出 key 等于 permissions 的所有值
             ->flatten() // 多维转一维
             ->unique('id'); // 去重
+    }
+
+    /**
+     * 获取 - 用户菜单.
+     *
+     * @see AdminTest::testGetMenus()
+     * @return Menu[]|UCollection
+     */
+    public function getMenus(): UCollection
+    {
+        $routes = $this->getPermissions()->pluck('route');
+
+        return Menu::where(Menu::column('platform'), Platform::ADMIN)
+            ->where(Menu::column('status'), Status::ENABLE)
+            ->get()
+            ->whereIn('route', $routes);
     }
 
     /**

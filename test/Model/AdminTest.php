@@ -39,4 +39,15 @@ class AdminTest extends TestCase
 
         self::assertTrue(true);
     }
+
+    /**
+     * @see Admin::getMenus()
+     */
+    public function testGetMenus()
+    {
+        $admin = Admin::find(1);
+        var_dump($admin->getMenus());
+
+        self::assertTrue(true);
+    }
 }
