@@ -33,6 +33,8 @@
         "hyperf/redis": "~2.2.0",
         "hyperf/resource": "~2.2.0",
         "hyperf/validation": "~2.2.0",
+        "hyperf/view": "~2.2.0",
+        "hyperf/view-engine": "~2.2.0",
         "phpdocumentor/reflection-docblock": "^5.3",
         "yadakhov/insert-on-duplicate-key": "^1.3"
     },
@@ -91,6 +93,6 @@
             "Composer\\Config::disableProcessTimeout",
             "composer dump-autoload -o && php ./bin/hyperf.php server:watch"
         ],
-        "kill": "kill -QUIT $(lsof -i:9501 | grep LISTEN | awk '{print $2}')"
+        "kill": "kill -QUIT $(lsof -i:9502 | grep LISTEN | awk '{print $2}')"
     }
 }
