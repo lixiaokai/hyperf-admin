@@ -13,7 +13,7 @@ use Core\Service\AppService;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\RequestMapping;
-use Kernel\Annotation\Permission\AdditionalPermissions;
+use Kernel\Annotation\Permission\AttachPermissions;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -43,7 +43,7 @@ class AppController extends BaseController
      *
      * 说明：附加列表权限
      *
-     * @AdditionalPermissions(routes={"admin/app"})
+     * @AttachPermissions(routes={"admin/app"})
      * @RequestMapping(path="{id}", methods="get")
      */
     public function show(int $id): ResponseInterface
