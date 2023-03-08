@@ -2,7 +2,7 @@
 .phpintel/
 .idea/
 .settings/
-public/
+public/attachment/
 runtime/
 vendor/
 .buildpath
